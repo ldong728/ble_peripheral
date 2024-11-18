@@ -288,16 +288,16 @@ class BlePeripheralPlugin : FlutterPlugin, BlePeripheralChannel, ActivityAware {
             ) {
                 super.onConnectionStateChange(device, status, newState)
                 when (newState) {
-BluetoothProfile.STATE_CONNECTED -> {
-                            handler?.post {
-                                gattServer?.connect(device, true)
-                            }
-                            synchronized(bluetoothDevicesMap) {
-                                bluetoothDevicesMap.put(
-                                    device.address,
-                                    device
-                                )
-                            }
+                    BluetoothProfile.STATE_CONNECTED -> {
+                        handler?.post {
+                            gattServer?.connect(device, true)
+                        }
+                        synchronized(bluetoothDevicesMap) {
+                            bluetoothDevicesMap.put(
+                                device.address,
+                                device
+                            )
+                        }
                         onConnectionUpdate(device, status, newState)
                     }
 
